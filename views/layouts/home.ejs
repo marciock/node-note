@@ -1,0 +1,98 @@
+<%- contentFor('body') %>
+
+<%- include ../widgets/tool-bar %>
+<div class="row">
+   
+
+</div>
+<div class="row">
+      
+    <div class="col s6 m3">
+        <div class="fixed-action-btn">
+          <button type="button" data-target="modalnews" class="btn-floating btn-large  green lighten-1 modal-trigger" id="btn-news">
+           <i class="material-icons">add</i>
+          </button> 
+        </div>
+
+
+    </div>
+
+<%- include ../modals/modal-news %>
+
+<script src="javascripts/draganddrop.js"></script>
+<script src="javascripts/fetchcustom.js"></script>
+<script src="socket.io/socket.io.js"></script>
+<script>
+ 
+   // button Modal
+    const newOk=document.getElementById('new-ok');
+    
+   // Elements into modals
+  const noteTitle=document.getElementById('note-title');
+  const noteText=document.getElementById('note-text');
+
+
+ 
+    
+  //  fecthFindSchedule('/find','titles');
+
+    window.onload=()=>{
+       
+
+        //modal activation
+        const options={opacity:0.5}
+        const elems = document.querySelectorAll('.modal');
+        const instances = M.Modal.init(elems, options);
+        const instance=M.Modal.getInstance(elems);
+
+       
+      
+        const fabEl=document.querySelectorAll('.fixed-action-btn');
+       const fabInstances=M.FloatingActionButton.init(fabEl,{direction:'left',toolbarEnabled:true});
+       
+        // begin an sochet.io       
+        const socket=io('http://localhost:3000');
+
+
+        //button ok confirm save modal-new
+      
+        newOk.addEventListener('click',()=>{
+
+                let data={
+                  
+                }
+
+              //  fetchSaveSchedule('/save',data);
+            
+           // socket.emit('schedules');
+        })
+
+        
+
+    // Emit reload of data aafter crud
+      /*  socket.on('output',data=>{
+
+           // console.log(data);
+            let conka='';
+            
+        
+            data.map(dash => {
+
+                
+          
+           conka +=collapsibleLI(dash._id,dash.title,dash.dateactual,dash.dateend,dash.description);
+
+            }).join('')
+            
+        //    ul.innerHTML=conka;
+
+        })*/
+
+        
+
+    };
+
+   
+
+
+</script>
