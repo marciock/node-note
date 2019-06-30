@@ -3,8 +3,9 @@ const opt = document.getElementById("options");
 const down=document.getElementById('down');
 const close=document.getElementById('close');
 
+const images=document.querySelectorAll('img');
 
-    
+
 
     opt.style.display='none';
     close.style.display='none';
@@ -12,10 +13,12 @@ const close=document.getElementById('close');
     down.addEventListener('click',()=>{
         opt.style.display='block';
         close.style.display='block';
+        down.style.display='none'
     })
     close.addEventListener('click',()=>{
         opt.style.display='none';
         close.style.display='none';
+       down.style.display='block'
     })
 
     
@@ -41,3 +44,4 @@ const dragEnd=()=>{
 }
 
 dragMe.addEventListener('mousedown',dragStart);
+

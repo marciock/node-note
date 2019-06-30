@@ -1,9 +1,11 @@
 <style>
     li{
         display: inline;
-        padding: 2em;
+        padding: 1em;
+        margin-left: 1em;
     
     }
+   
     #menu {
     -webkit-user-select: none;
        -moz-user-select: none;
@@ -12,23 +14,45 @@
     position: absolute;
     z-index: 9999;
 }
+
+.imgText{
+    max-width: 50%;
+    max-height: 50%;
+
+    width: auto;
+    height: auto;
+}
+
+
+
 </style>
 
-<div class="row" id="menu">
+<div class="row" id="menu" tabindex="-1">
    
-    <button class="btn-floating btn-large green" ><i class="material-icons">format_color_text</i></button>
-    <button class="btn-floating btn-small  black" id="down" ><i class="material-icons">arrow_drop_down</i></button>
-    <button class="btn-floating btn-small  gray" id="close" ><i class="material-icons">close</i></button>
-    <ul id="options">
-        <li><button class="btn-floating  scale-transition  black" id="bold"><i class="material-icons">format_bold</i></button></li>
+    
+        <div>
+        <button class="btn-floating btn-large green" ><i class="material-icons">format_color_text</i></button>
+      </div>
+        
+        <div style="margin-left: 1em; margin-top:0.5em;">
+            <button class="btn-floating btn-small  black" id="down" ><i class="material-icons">arrow_drop_down</i></button>
+            <button class="btn-floating btn-small  gray" id="close" ><i class="material-icons">close</i></button>
+        </div>
+    
+    
+    <ul id="options" >
+        <li><button class="btn-floating  black" id="bold"><i class="material-icons">format_bold</i></button></li>
         <li><button class="btn-floating  blue" id="italic"><i class="material-icons">format_italic</i></button></li>
-        <li><button class="btn-floating  gray" id="undeline"><i class="material-icons">format_underlined</i></button></li>
+        <li><button class="btn-floating  gray" id="underline"><i class="material-icons">format_underlined</i></button></li>
         <li><button class="btn-floating  orange" id="align-left"><i class="material-icons">format_align_left</i></button></li>
         <li><button class="btn-floating  purple" id="align-center"><i class="material-icons">format_align_center</i></button></li>
         <li><button class="btn-floating  red" id="align-justify"><i class="material-icons">format_align_justify</i></button></li>
         <li><button class="btn-floating  cyan" id="align-right"><i class="material-icons">format_align_right</i></button></li>
-        <li><button class="btn-floating  lime" id="image"><i class="material-icons">image</i></button></li>
+        <li><a class="btn-floating  lime" id="image" ><i class="material-icons">image</i></a></li>
+        <li><a class="btn-floating  tea" id="resize" ><i class="material-icons">photo_size_select_large</i></a></li>
 
     </ul>
+   
+    
 
 </div>

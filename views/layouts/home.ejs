@@ -19,7 +19,9 @@
 
 <%- include ../modals/modal-news %>
 
+
 <script src="javascripts/draganddrop.js"></script>
+<script src="javascripts/editor.js"></script>
 <script src="javascripts/fetchcustom.js"></script>
 <script src="socket.io/socket.io.js"></script>
 <script>
@@ -30,11 +32,25 @@
    // Elements into modals
   const noteTitle=document.getElementById('note-title');
   const noteText=document.getElementById('note-text');
+  const modalCard=document.getElementById('modal-card');
+this.getFocusable='';
 
+ noteText.addEventListener('blur',()=>{
+      this.getFocusable=noteText.id;
+      console.log(this.getFocusable)
+ })
 
+ noteTitle.addEventListener('blur',()=>{
+      this.getFocusable=noteTitle.id;
+
+      console.log(this.getFocusable)
+ })
+
+ if(noteText.height > modalCard.height){
+  modalCard.style.height=auto;
+ }
  
     
-  //  fecthFindSchedule('/find','titles');
 
     window.onload=()=>{
        
@@ -47,9 +63,7 @@
 
        
       
-        const fabEl=document.querySelectorAll('.fixed-action-btn');
-       const fabInstances=M.FloatingActionButton.init(fabEl,{direction:'left',toolbarEnabled:true});
-       
+      
         // begin an sochet.io       
         const socket=io('http://localhost:3000');
 
