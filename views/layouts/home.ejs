@@ -1,9 +1,11 @@
 <%- contentFor('body') %>
 
 <%- include ../widgets/tool-bar %>
-<div class="row">
+<div class="row" id="dash">
    
-
+  <% for(db of data){ %>
+    <p><%- db._id %></p>
+    <% }%>
 </div>
 <div class="row">
       
@@ -25,32 +27,36 @@
 <script src="javascripts/fetchcustom.js"></script>
 <script src="socket.io/socket.io.js"></script>
 <script>
- 
+   
    // button Modal
-    const newOk=document.getElementById('new-ok');
+  const newOk=document.getElementById('new-ok');
     
    // Elements into modals
   const noteTitle=document.getElementById('note-title');
   const noteText=document.getElementById('note-text');
   const modalCard=document.getElementById('modal-card');
-this.getFocusable='';
+  
+  
 
- noteText.addEventListener('blur',()=>{
-      this.getFocusable=noteText.id;
-      console.log(this.getFocusable)
- })
+  this.getFocusable='';
 
- noteTitle.addEventListener('blur',()=>{
-      this.getFocusable=noteTitle.id;
+  noteText.addEventListener('blur',()=>{
+        this.getFocusable=noteText.id;
+        console.log(this.getFocusable)
+  })
 
-      console.log(this.getFocusable)
- })
+  noteTitle.addEventListener('blur',()=>{
+        this.getFocusable=noteTitle.id;
 
- if(noteText.height > modalCard.height){
-  modalCard.style.height=auto;
- }
- 
+        console.log(this.getFocusable)
+  })
+
+  if(noteText.height > modalCard.height){
+    modalCard.style.height=auto;
+  }
+  
     
+
 
     window.onload=()=>{
        
@@ -60,9 +66,7 @@ this.getFocusable='';
         const elems = document.querySelectorAll('.modal');
         const instances = M.Modal.init(elems, options);
         const instance=M.Modal.getInstance(elems);
-
-       
-      
+     
       
         // begin an sochet.io       
         const socket=io('http://localhost:3000');
@@ -71,12 +75,41 @@ this.getFocusable='';
         //button ok confirm save modal-new
       
         newOk.addEventListener('click',()=>{
+        
+          let imgPost=document.querySelectorAll('[data-name]');
+         
 
-                let data={
-                  
-                }
+         // const fr=new FileReader();
 
-              //  fetchSaveSchedule('/save',data);
+       // let img= fr.readAsDataURL(imgPost.src);
+
+   
+          let imgs=[];
+          let names=[];
+            if(imgPost !== undefined){
+              for(img of imgPost){
+              //console.log(img.src);
+              imgs.push(img.src)
+              names.push(img.dataset.name);
+            }
+          }
+          
+              /*  let data={
+                  title:noteTitle.outerHTML,
+                  text:noteText.outerHTML,
+                  image:imgs,
+                  image_name:names,
+                  creation:Date(),
+                  active:'true'
+                 }
+                */
+               this.formData.append('title',noteTitle.outerHTML);
+               this.formData.append('text',noteText.outerHTML);
+               this.formData.append('creation',Date());
+               this.formData.append('active','true');
+                 console.log(`images- ${this.formData.get('image')}`);
+
+                fetchSaveNote('/save',this.formData);
             
            // socket.emit('schedules');
         })

@@ -12,7 +12,7 @@ const image=document.getElementById('image');
 const reaize=document.createElement('resize');
 //file.type='file';
 
-
+this.formData=new FormData();
 
 
 
@@ -61,15 +61,20 @@ image.addEventListener('click',()=>{
     file.addEventListener('change',()=>{
    
 
-    let   fileURL=window.URL.createObjectURL(file.files[0]);
+    let  fileURL=window.URL.createObjectURL(file.files[0]);
 
+   // console.log(file.files[0])
+
+        this.formData.append('image',file.files[0]);
+       
        // document.execCommand('insertImage',0,fileURL);
        let img=document.createElement('img');
        let div=document.createElement('div');
       
-       console.log(fileURL)
+      // console.log(file.files[0])
        img.src=fileURL;
        img.classList.add('imgText');
+       img.dataset.name=file.files[0].name;
       
           
 

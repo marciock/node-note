@@ -5,9 +5,11 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const expressEjsLayouts=require('express-ejs-layouts');
 const bodyParser=require('body-parser');
+const formidable=require('express-formidable');
 
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
+const listRouter = require('./routes/list');
+const saveRouter = require('./routes/save');
 
 
 const app = express();
@@ -17,6 +19,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(expressEjsLayouts);
 
+app.use(formidable());
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -26,7 +29,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/list', listRouter);
+app.use('/save', saveRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

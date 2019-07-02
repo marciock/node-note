@@ -1,16 +1,14 @@
-const fetchSaveSchedule=(url,params)=>{
+const fetchSaveNote=(url,params)=>{
     let response=fetch(url,{
         method:'POST',
-        headers:{
-          'Content-Type':'application/json;charset=utf-8'
-        },
-        body:JSON.stringify(params)
+        
+        body:params
       });
       
 }
 
 
-const fecthFindSchedule=(url,element)=>{
+const fecthFindNote=(url,element)=>{
 
   let st=fetch(url,{
     method:'GET',
@@ -24,27 +22,16 @@ const fecthFindSchedule=(url,element)=>{
 
   }).then(dash=>{
 
+    console.log(dash)
+
     if(dash !== undefined){
    dash.map(f=>{
      console.log(f.title)
  
     const el=document.getElementById(element)
-   // if(f.active===true){
-    let li=document.createElement('li');
-    //console.log(li);
-    let myD=new Date();
-    let dateE=`${myD.getDate(f.dateend)}/${myD.getMonth(f.dateend)}/${myD.getFullYear(f.dateend)}`;
-    let dateA=`${myD.getDate(f.dateactual)}/${myD.getMonth(f.dateactual)}/${myD.getFullYear(f.dateactual)}`;
-    
-    console.log(dateE)
-  
-
-     li.innerHTML=collapsibleHB(f._id,f.title,dateA,dateE,f.description);
-
-     el.appendChild(li);
-     
-     
-  //  }
+    //let div=document.createElement('div');
+    el +=noteHB(f._id,f.title,f.text);
+   
 
   }).join('')
 }
@@ -53,7 +40,7 @@ const fecthFindSchedule=(url,element)=>{
 }
 
 
-const fecthSearchSchedule=(url,params,element)=>{
+const fecthSearchNote=(url,params,element)=>{
 
   let response=fetch(url,{
     method:'POST',
@@ -131,7 +118,7 @@ const fetchItens=(url,params,element)=>{
     })
 }
 
-const collapsibleDIV=(id,title,text)=>{
+const cardDIV=(id,title,text)=>{
 
   let conca=` 
   <div class="col s12">
@@ -149,7 +136,7 @@ const collapsibleDIV=(id,title,text)=>{
   return conca;
 
 }
-const collapsibleHB=(id,title,text)=>{
+const cardHB=(id,title,text)=>{
 
   let conca=` 
    
