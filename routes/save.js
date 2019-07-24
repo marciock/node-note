@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.post('/',(req,res)=>{
   
-  console.log(req.fields);
+  
 
  /* fse.copy(file,__dirname+'/public/images/'+Date.now()+'.jpg')
   .then(()=>console.log('success'))
